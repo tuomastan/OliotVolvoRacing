@@ -38,6 +38,12 @@ public class RemoteControl {
 			case 5:
 				motors.moveForward();
 				break;
+			case 6:
+				motors.rotateCannonLeft();
+				break;
+			case 7:
+				motors.rotateCannonRight();
+				break;
 			case 8:
 				motors.moveBack();
 				break;
@@ -47,7 +53,7 @@ public class RemoteControl {
 			default:
 				break;
 			}
-			Delay.msDelay(1000);
+			Delay.msDelay(500);
 		}
 		irs.stopSampling();
 		motors.closeMotors();
