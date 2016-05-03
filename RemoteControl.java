@@ -42,4 +42,29 @@ public class RemoteControl {
 		irs.stopSampling();
 		motors.closeMotors();
 	}
+	
+		public static void autoPilot(Motors motors,EV3IRSensor irSensor,Random rng){
+		SampleProvider distance = irSensor.getMode("Distance");
+		while(Button.ESCAPE.isUp()){
+			int random = rng.nextInt(3);
+			motors.forward();
+			float[] sample = new float[distance.sampleSize()];
+			distance.fetchSample(sample,0);
+			int dist = (int) sample[0];
+			if(dist < 15){
+				motors.backwards();
+				Delay.msDelay(1000);
+				if(random == 0){
+					
+					Delay.msDelay(1000);
+				}else if(random == 1){
+					
+					Delay.msDelay(1000);
+				}else if(random == 2){
+					
+					Delay.msDelay(2000);
+				}	
+			}
+		}
+	}
 }
