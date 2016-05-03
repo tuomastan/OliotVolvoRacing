@@ -13,7 +13,7 @@ public class RemoteControl {
 	
 	public void run() {
 		irs.start();
-		while (!Button.ESCAPE.isDown()) {
+		while (Button.ESCAPE.isUp()) {
 			int cmd = irs.getRemoteCmd();
 			switch(cmd) {
 			case 1:
@@ -47,21 +47,21 @@ public class RemoteControl {
 		SampleProvider distance = irSensor.getMode("Distance");
 		while(Button.ESCAPE.isUp()){
 			int random = rng.nextInt(3);
-			motors.forward();
+			motors.moveForward();
 			float[] sample = new float[distance.sampleSize()];
 			distance.fetchSample(sample,0);
 			int dist = (int) sample[0];
 			if(dist < 15){
-				motors.backwards();
+				motors.moveBack();
 				Delay.msDelay(1000);
 				if(random == 0){
-					
+					motors.turnRight();
 					Delay.msDelay(1000);
 				}else if(random == 1){
-					
+					motors.turnLeft();
 					Delay.msDelay(1000);
 				}else if(random == 2){
-					
+					motors.turnRight();
 					Delay.msDelay(2000);
 				}	
 			}
