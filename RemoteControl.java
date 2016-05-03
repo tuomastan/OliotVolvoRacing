@@ -1,16 +1,21 @@
 package robotProject;
 import lejos.hardware.Button;
+import java.util.Random;
 import lejos.utility.Delay;
+import lejos.robotics.SampleProvider;
+import lejos.hardware.sensor.EV3IRSensor;
 
 public class RemoteControl {
 	private IRSChecker irs;
 	private Motors motors;
 	private Random rng;
+	private EV3IRSensor irSensor;
 	
-	public RemoteControl(IRSChecker irs, Motors motors, Random rng) {
+	public RemoteControl(IRSChecker irs, Motors motors, Random rng, EV3IRSensor irSensor) {
 		this.irs = irs;
 		this.motors = motors;
 		this.rng = rng;
+		this.irSensor = irSensor;
 	}
 	
 	public void run() {
@@ -37,7 +42,7 @@ public class RemoteControl {
 				motors.moveBack();
 				break;
 			case 10:
-				autoPilot(motors,irs,rng);
+				autoPilot(motors,irSensor,rng);
 				break;
 			default:
 				break;
