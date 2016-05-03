@@ -10,7 +10,7 @@ public class Main {
 		Random randomGenerator = new Random();
 		Motors motors = new Motors();
 		IRSChecker irs = new IRSChecker(irsSensor);
-		RemoteControl rmt = new RemoteControl(irs,motors,randomGenerator);
+		RemoteControl rmt = new RemoteControl(irs,motors,randomGenerator,irsSensor);
 		rmt.run();
 	}
 
