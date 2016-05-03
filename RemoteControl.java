@@ -5,10 +5,12 @@ import lejos.utility.Delay;
 public class RemoteControl {
 	private IRSChecker irs;
 	private Motors motors;
+	private Random rng;
 	
-	public RemoteControl(IRSChecker irs, Motors motors) {
+	public RemoteControl(IRSChecker irs, Motors motors, Random rng) {
 		this.irs = irs;
 		this.motors = motors;
+		this.rng = rng;
 	}
 	
 	public void run() {
@@ -34,6 +36,9 @@ public class RemoteControl {
 			case 8:
 				motors.moveBack();
 				break;
+			case 10:
+				autoPilot(motors,irs,rng);
+				break;
 			default:
 				break;
 			}
@@ -43,7 +48,7 @@ public class RemoteControl {
 		motors.closeMotors();
 	}
 	
-		public static void autoPilot(Motors motors,EV3IRSensor irSensor,Random rng){
+		public void autoPilot(Motors motors,EV3IRSensor irSensor,Random rng){
 		SampleProvider distance = irSensor.getMode("Distance");
 		while(Button.ESCAPE.isUp()){
 			int random = rng.nextInt(3);
