@@ -30,11 +30,13 @@ public class Motors {
 	public void turnRight() {
 		stop();
 		motor1.forward();
+		motor2.backward();
 	}
 	
 	public void turnLeft() {
 		stop();
 		motor2.forward();
+		motor1.backward();
 	}
 	
 	public void stop() {
