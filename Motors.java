@@ -1,8 +1,7 @@
-package robotProject;
+import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
-import lejos.utility.Delay;
 
 public class Motors {
 	private EV3LargeRegulatedMotor motor1;
@@ -19,6 +18,12 @@ public class Motors {
 	
 	public void moveForward() {
 		stop();
+		motor1.forward();
+		motor2.forward();
+	}
+	
+	public void autoMoveForward() {
+		Button.LEDPattern(4);
 		motor1.forward();
 		motor2.forward();
 	}
